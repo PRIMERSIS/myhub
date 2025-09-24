@@ -1,13 +1,29 @@
-import { Button, HStack } from '@chakra-ui/react'
-import React from 'react'
+import { Grid, GridItem, Show } from "@chakra-ui/react";
+import NavBar from "./components/NavBar";
+import GameGrid from "./components/GameGrid";
 
 const App = () => {
   return (
-    <HStack>
-      <Button>Click Me!</Button>
-      <Button>Click Me!</Button>
-    </HStack>
-  )
-}
+    <Grid
+      templateAreas={{ base: `"nav" "main"`, lg: `"nav nav" "aside main"` }}>
+      <GridItem area={"nav"} bg={"#"}>
+        <NavBar />
+      </GridItem>
 
-export default App
+      <Show when={"lg"}>
+        <GridItem
+          area={"aside"}
+          bg={"#"}
+          display={{ base: "none", lg: "block" }}>
+          Left Side Bar
+        </GridItem>
+      </Show>
+
+      <GridItem area={"main"} bg={"#"}>
+        <GameGrid />
+      </GridItem>
+    </Grid>
+  );
+};
+
+export default App;
